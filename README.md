@@ -3,13 +3,5 @@
 Un repositorio para jugar con "geopandas".
 
 --- 
-
-Ojo: se usan datos de otro repositorio como submodulo, asi que despues de clonar, hay que correr ademas:
-
-```
-git submodule init; git submodule update
-```
-
-para empezar a usar.
-
+El programa "centro_mx.py" calcula centroide del territorio nacional con datos abiertos de la CONABIO.
 ---
