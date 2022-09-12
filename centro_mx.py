@@ -29,10 +29,14 @@ if not exists(guardar_como):
         descarga.write(contenido)
 
 mx_geodf = geopd.read_file(guardar_como)
-mx_geodf.set_index("ESTADO")
-mx_geodf["centroide"] = mx_geodf.centroid
-# print(mx_geodf["centroide"])
-ax = mx_geodf["geometry"].plot()
-# mx_geodf["centroide"].plot(ax=ax, color="k")
+# Union de estados (incluye territorio insular)
+mx_geodf = mx_geodf[["ESTADO", "geometry"]]
+mx_junto = mx_geodf.dissolve()
+# Calculo del centroide
+mx_junto["centroide"] = mx_junto.centroid
+
+# Mostrar mapa y centroide
+ax = mx_geodf["geometry"].plot(ec="k", alpha=0.7)
+mx_junto["centroide"].plot(ax=ax, marker="*", c="tomato", lw=1)
 ax.grid(False)
 plt.show()
