@@ -39,4 +39,4 @@ mx_junto["centroide"] = mx_junto.centroid
 ax = mx_geodf["geometry"].plot(ec="k", alpha=0.7)
 mx_junto["centroide"].plot(ax=ax, marker="*", c="tomato", lw=1)
 ax.grid(False)
-plt.show()
+plt.savefig("./centroide_mx.png")
