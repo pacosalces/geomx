@@ -32,8 +32,9 @@ mx_geodf = geopd.read_file(guardar_como)
 # Union de estados (incluye territorio insular)
 mx_geodf = mx_geodf[["ESTADO", "geometry"]]
 mx_junto = mx_geodf.dissolve()
+
 # Calculo del centroide
-mx_junto["centroide"] = mx_junto.centroid
+mx_junto["centroide"] = mx_junto.to_crs('+proj=cea').centroid.to_crs(mx_junto.crs)
 
 # Mostrar mapa y centroide
 ax = mx_geodf["geometry"].plot(ec="k", alpha=0.7)
